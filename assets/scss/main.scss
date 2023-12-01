@@ -1,0 +1,31 @@
+@import url("@fontsource/poppins");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Poppins",sans-serif;
+}
+
+.text_size-md {
+  font-size: 14px;
+}
+.text_size-mmd {
+  font-size: 16px;
+}
+.text_size-lg {
+  font-size: 22px;
+}
+.text_size-xl {
+  font-size: 28px;
+}
+
+.container-body {
+  margin: 34px 24px 24px 274px;
+
+  padding: 44px;
+}
+
+.primary-btn{
+  min-width: 120px;
+}
