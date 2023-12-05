@@ -9,7 +9,12 @@ export default {
       products: [],
       prodPrices: [],
       prodPricesHis: [],
-      goodReceives: []
+      goodReceives: [],
+      grLines: [],
+      sales: [],
+      salesLines: [],
+      latestStockards: [],
+      stockardHistory: []
     };
   },
 
@@ -34,6 +39,21 @@ export default {
     },
     SET_GOOD_RECEIVES(state, data) {
       state.goodReceives = data;
+    },
+    SET_GRLINES(state, data) {
+      state.grLines = data;
+    },
+    SET_SALES(state, data) {
+      state.sales = data;
+    },
+    SET_SALESLINE(state, data) {
+      state.salesLines = data;
+    },
+    SET_LATEST_STOCKARD(state, data) {
+      state.latestStockards = data;
+    },
+    SET_STOCKARD_HISTORY(state, data) {
+      state.stockardHistory = data;
     }
   },
 
@@ -98,6 +118,50 @@ export default {
       }).then(res => {
         commit("SET_GOOD_RECEIVES", res.data);
       }, err => { console.log(err); });
-    }
+    },
+
+    async getAllGrLines({ commit }) {
+      await axios({
+        method: "GET",
+        url: `${this.$axios.defaults.baseURL}/gr-lines`,
+      }).then(res => {
+        commit("SET_GRLINES", res.data);
+      }, err => { console.log(err); });
+    },
+
+    async getAllSales({ commit }) {
+      await axios({
+        method: "GET",
+        url: `${this.$axios.defaults.baseURL}/sales`,
+      }).then(res => {
+        commit("SET_SALES", res.data);
+      }, err => { console.log(err); });
+    },
+
+    async getAllSalesLine({ commit }) {
+      await axios({
+        method: "GET",
+        url: `${this.$axios.defaults.baseURL}/sales-lines`,
+      }).then(res => {
+        commit("SET_SALESLINE", res.data);
+      }, err => { console.log(err); });
+    },
+
+    async getLatestStockards({ commit }) {
+      await axios({
+        method: "GET",
+        url: `${this.$axios.defaults.baseURL}/stockards-latest`,
+      }).then(res => {
+        commit("SET_LATEST_STOCKARD", res.data);
+      }, err => { console.log(err); });
+    },
+    async getStockardHistory({ commit }) {
+      await axios({
+        method: "GET",
+        url: `${this.$axios.defaults.baseURL}/stockards-history`,
+      }).then(res => {
+        commit("SET_STOCKARD_HISTORY", res.data);
+      }, err => { console.log(err); });
+    },
   }
 };
