@@ -23,11 +23,11 @@ export default {
       this.show = true;
       this.variant = variant;
       this.message = message;
-      this.icon = icon ?? "circle-exclamatio";
+      this.icon = icon ?? "circle-exclamation";
 
       setTimeout(() => {
         this.show = false;
-      }, 3000);
+      }, 5000);
     },
   },
 };
