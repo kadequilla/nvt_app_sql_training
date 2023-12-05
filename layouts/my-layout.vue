@@ -78,12 +78,28 @@ export default {
             },
           ],
         },
+        {
+          menuTitle: "Reports",
+          childMenus: [
+            {
+              key: "8",
+              childTitle: "Stockard",
+              active: false,
+              route: "/reports/stockard",
+            },
+          ],
+        },
         { menuTitle: "Logut", isLogout: true },
       ],
     };
   },
 
   created() {
+    if (!sessionStorage.isLoggedIn || !sessionStorage.userId) {
+      this.$router.push({ path: "/" });
+      return;
+    }
+
     //on reload set to active selected previous menu
     this.menus.forEach((menu) => {
       menu.childMenus?.forEach((child) => {
