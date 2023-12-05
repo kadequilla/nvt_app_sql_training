@@ -94,22 +94,20 @@
     </b-modal>
 
     <b-modal hide-footer id="product_modal" title="PRODUCTS" size="lg">
-      <div class="p-5">
-        <b-form-input
-          class="mb-2"
-          v-model="skuCodeFilterOnSelectProd"
-          placeholder="Filter SKUCODE"
-          @input="onSelectProdSkuCodeFilterChange()"
-        />
+      <b-form-input
+        class="mb-2"
+        v-model="skuCodeFilterOnSelectProd"
+        placeholder="Filter SKUCODE"
+        @input="onSelectProdSkuCodeFilterChange()"
+      />
 
-        <b-table sticky-header hover :items="products" :fields="productFields">
-          <template #cell(action)="row">
-            <b-button class="mb-2" variant="info" @click="onSelectProd(row.item)">
-              <font-awesome-icon :icon="['fas', 'check']" />
-            </b-button>
-          </template>
-        </b-table>
-      </div>
+      <b-table sticky-header hover :items="products" :fields="productFields">
+        <template #cell(action)="row">
+          <b-button class="mb-2" variant="info" @click="onSelectProd(row.item)">
+            <font-awesome-icon :icon="['fas', 'check']" />
+          </b-button>
+        </template>
+      </b-table>
     </b-modal>
 
     <!-- ALERT -->
