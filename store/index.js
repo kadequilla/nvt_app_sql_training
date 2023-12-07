@@ -7,8 +7,6 @@ export default {
       modules: [],
       prodGroups: [],
       products: [],
-      prodPrices: [],
-      prodPricesHis: [],
       goodReceives: [],
       grLines: [],
       sales: [],
@@ -31,12 +29,7 @@ export default {
     SET_PRODUCTS(state, data) {
       state.products = data;
     },
-    SET_PRODUCT_PRICES(state, data) {
-      state.prodPrices = data;
-    },
-    SET_PRODUCT_PRICES_HISTORY(state, data) {
-      state.prodPricesHis = data;
-    },
+
     SET_GOOD_RECEIVES(state, data) {
       state.goodReceives = data;
     },

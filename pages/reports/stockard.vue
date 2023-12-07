@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       skuCodeFilter: "",
-      selectedFilterType: "latest",
+      selectedFilterType: "history",
       filterTypes: [
         { text: "Latest", value: "latest" },
         { text: "History", value: "history" },
@@ -125,6 +125,7 @@ export default {
           { key: "product_name", label: "Product Name" },
           { key: "qty_bal", label: "Qty Balance" },
           { key: "amt_bal", label: "Amount Balance" },
+          { key: "mac", label: "Moving Average Cost" },
         ];
         //fetch latest stockards
         this.stockards = this.getLatestStockards.filter(
@@ -145,6 +146,7 @@ export default {
         { key: "amount", label: "Amount" },
         { key: "qty_bal", label: "Qty Balance" },
         { key: "amount_bal", label: "Amount Balance" },
+        { key: "mac", label: "Moving Average Cost" },
         { key: "date_created", label: "Date Created" },
       ];
 

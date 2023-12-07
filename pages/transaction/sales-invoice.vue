@@ -110,7 +110,7 @@
             <template #cell(qty)="row">
               <b-input
                 :disabled="isProcessed"
-                @input="onInputQty(row.item)"
+                @input="computeTotal(row.item)"
                 v-model="row.item.qty"
               ></b-input>
             </template>
@@ -179,7 +179,9 @@ export default {
       lines: [],
       linesFields: [
         { key: "prodName", label: "Product Name", thStyle: { width: "60%" } },
+        { key: "unit", label: "Unit", thStyle: { width: "10%" } },
         { key: "qty", label: "Qty", thStyle: { width: "15%" } },
+        { key: "cost", label: "Cost", thStyle: { width: "15%" } },
         { key: "amt", label: "Amount", thStyle: { width: "20%" } },
         { key: "actions", label: "Actions" },
       ],
@@ -206,6 +208,9 @@ export default {
     this.$store.dispatch("getAllProductPrices");
   },
   computed: {
+    getLatestStockards() {
+      return this.$store.state.latestStockards;
+    },
     isProcessed() {
       return this.isOvr ? false : this.form.docno != null;
     },
@@ -348,8 +353,8 @@ export default {
 
       this.lines = newLines;
     },
-    onInputQty(item) {
-      item.amt = item.qty * item.price;
+    computeTotal(item) {
+      item.amt = item.qty * item.cost;
     },
     onRemoveProd(index) {
       this.lines.splice(index, 1);
@@ -367,7 +372,9 @@ export default {
     },
     fetchProds() {
       this.$store.dispatch("getAllProducts").then((_) => {
-        this.products = this.getAllProducts;
+        this.$store.dispatch("getLatestStockards").then((_) => {
+          this.products = this.getAllProducts;
+        });
       });
     },
     openProdModal() {
@@ -384,15 +391,20 @@ export default {
         })[0]?.price ?? 0.0
       );
     },
+    getProductMac(id) {
+      return this.getLatestStockards.filter((val) => {
+        return val.product_id == id;
+      })[0].mac;
+    },
     onSelectProd(item) {
-      let prodPrice = this.getProdPriceByTradeType(item);
-
+      const mac = this.getProductMac(item.product_id);
       this.lines.push({
         prodId: item.product_id,
         prodName: `[${item.skucode}] ${item.product_name}`,
+        unit: item.unit,
         qty: 1,
-        amt: prodPrice,
-        price: prodPrice,
+        amt: mac,
+        cost: mac,
       });
       this.products = this.getAllProducts;
     },
@@ -435,7 +447,9 @@ export default {
             this.lines.push({
               prodId: val.product_id,
               prodName: `[${val.skucode}] ${val.product_name}`,
+              unit: val.unit,
               qty: val.qty,
+              cost: val.cost,
               amt: val.total_amount,
             });
           }

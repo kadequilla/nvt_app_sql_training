@@ -16,7 +16,7 @@
       <!-- parent menu -->
       <ul class="pt-2">
         <li class="menu" v-for="menu in menus" @click="onClickParentMenu(menu)">
-          <div :class="`menu__title ml-5  ${menu.isLogout ? 'menu_hoverable' : ''}`">
+          <div :class="`menu__title ml-5  ${menu.isLogout ? 'menu_hoverable mt-5' : ''}`">
             {{ menu.menuTitle }}
           </div>
           <!-- child menu admin -->
@@ -53,12 +53,6 @@ export default {
               route: "/admin/product-group",
             },
             { key: "4", childTitle: "Product", active: false, route: "/admin/product" },
-            {
-              key: "5",
-              childTitle: "Product Price",
-              active: false,
-              route: "/admin/product-price",
-            },
           ],
         },
         {
