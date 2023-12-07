@@ -142,6 +142,7 @@ export default {
         { key: "skucode", label: "SKUCODE" },
         { key: "product_name", label: "Product Name" },
         { key: "documentno", label: "Document No." },
+        { key: "cost", label: "Cost" },
         { key: "qty", label: "Qty" },
         { key: "amount", label: "Amount" },
         { key: "qty_bal", label: "Qty Balance" },
